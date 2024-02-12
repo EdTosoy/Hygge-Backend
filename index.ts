@@ -1,12 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
-const dotenv = require("dotenv").config();
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
 import { notFound, errorHandler } from "./middleware";
 
-import dbConnect from "./config/dbConnect";
+import { dbConnect } from "config";
 import authRouter from "./routes/authRoute";
 
 const app = express();

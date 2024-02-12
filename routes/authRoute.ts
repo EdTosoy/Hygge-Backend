@@ -10,8 +10,8 @@ import {
   unblockUser,
   logoutUser,
   refreshToken,
-} from "../controller/userCtrl";
-import { authMiddleware, isAdmin } from "../middleware";
+} from "controller";
+import { authMiddleware, isAdmin } from "middleware";
 
 const router: Router = express.Router();
 

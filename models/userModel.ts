@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import { IUser } from "./types";
 
@@ -45,7 +45,7 @@ const userSchema: Schema<IUser> = new Schema(
   }
 );
 
-userSchema.pre<IUser>("save", async function (next) {
+userSchema.pre<IUser>("save", async function () {
   const salt = bcrypt.genSaltSync(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
