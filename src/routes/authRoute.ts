@@ -26,7 +26,7 @@ authRouter.post("/register", createUser);
 authRouter.post("/login", loginUser);
 
 // PUT REQUESTS
-authRouter.put("/edit-user", authMiddleware, updateAUser);
+authRouter.put("/update-user", authMiddleware, updateAUser);
 authRouter.put("/block-user/:id", authMiddleware, isAdmin, blockUser);
 authRouter.put("/unblock-user/:id", authMiddleware, isAdmin, unblockUser);
 
