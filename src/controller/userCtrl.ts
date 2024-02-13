@@ -31,7 +31,6 @@ export const loginUser: RequestHandler = asyncHandler(
     if (findUser) {
       const isPasswordMatch = await findUser.isPasswordMatch(password);
       if (findUser && isPasswordMatch) {
-        // Fix the condition
         const refreshToken = generateRefreshToken(findUser._id);
         const updatedUser = await User.findByIdAndUpdate(
           findUser._id,
