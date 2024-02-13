@@ -2,40 +2,41 @@
   "compilerOptions": {
     "target": "es2020",
     "lib": ["es2020"],
-    "typeRoots": ["node_modules/@types"],
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "module": "commonjs",
     "pretty": true,
     "sourceMap": true,
     "declaration": true,
     "outDir": "dist",
     "allowJs": true,
     "noEmit": false,
-    "esModuleInterop": true,
     "resolveJsonModule": true,
     "importHelpers": true,
-    "baseUrl": "./",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": "./src",
     "paths": {
-      "/*": ["*"],
-      "config": ["./config"],
-      "controller/*": ["./controller"],
-      "databases/*": ["databases/*"],
-      "dtos/*": ["dtos/*"],
-      "exceptions/*": ["exceptions/*"],
-      "interfaces/*": ["interfaces/*"],
-      "middleware/*": ["./middleware"],
-      "models/*": ["models/*"],
-      "routers/*": ["routers/*"],
-      "services/*": ["services/*"],
-      "utils/*": ["utils/*"]
+      "routes": ["routes"],
+      "@types": ["@types"],
+      "@shared/*": ["shared/*"],
+      "models": ["models"],
+      "utils": ["utils"],
+      "config": ["config"],
+      "controller": ["controller"],
+      "middleware": ["middleware"]
     },
-    "strict": true
+    "typeRoots": ["src/@types", "./node_modules/@types"],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-
-  "include": ["./**/*.ts", "./**/*.json", ".env"], // Add the missing inputs
-  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"] // Keep the existing exclude paths
+  "include": ["./**/*.ts", "./**/*.json", ".env"],
+  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }

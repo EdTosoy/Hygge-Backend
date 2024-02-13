@@ -1,7 +1,7 @@
-import { Request, RequestHandler, Response, NextFunction } from "express";
+import { Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
-import User from "models/userModel";
 import jwt, { GetPublicKeyOrSecret, Secret, VerifyErrors } from "jsonwebtoken";
+import { User } from "models";
 import { validateMongoDbId } from "utils";
 import { generateRefreshToken, generateToken } from "config";
 
@@ -193,7 +193,7 @@ export const unblockUser: RequestHandler = asyncHandler(
 
 //Logout User
 export const logoutUser: RequestHandler = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  async (req: Request, res: Response): Promise<any> => {
     const { refreshToken } = req.cookies;
     if (!refreshToken) throw new Error("No Refresh Token in Cookies");
 

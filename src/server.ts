@@ -4,18 +4,15 @@ import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
 
-import { notFound, errorHandler } from "./middleware";
-
-import { dbConnect } from "./config";
-import authRouter from "./routes/authRoute";
+import { notFound, errorHandler } from "middleware";
+import { dbConnect } from "config";
+import { authRouter } from "routes";
 
 dotenv.config();
-
+dbConnect();
 const app = express();
 
 const PORT = process.env.PORT || 4000;
-
-dbConnect();
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());

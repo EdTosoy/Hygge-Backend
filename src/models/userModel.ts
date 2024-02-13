@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import { IUser } from "./types";
+import { IUser } from "@types";
 
 // Declare the Schema of the Mongo model
 const userSchema: Schema<IUser> = new Schema(
@@ -57,4 +57,4 @@ userSchema.methods.isPasswordMatch = async function (
 };
 
 //Export the model
-export default mongoose.model<IUser>("User", userSchema);
+export const User = mongoose.model<IUser>("User", userSchema);

@@ -1,7 +1,7 @@
-import User from "models/userModel";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { User } from "models";
 
 export const authMiddleware: RequestHandler = asyncHandler(
   async (req: Request, _res: Response, next: NextFunction) => {
