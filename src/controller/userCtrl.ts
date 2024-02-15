@@ -8,11 +8,13 @@ import { generateRefreshToken, generateToken } from "config";
 // Register A User
 export const createUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const email: string = req.body.email;
+    const { confirmPassword, password, email } = req.body;
+
     const findUser = await User.findOne({ email });
+    if (password !== confirmPassword)
+      throw new Error("Password does not match");
 
     if (!findUser) {
-      // create a new user
       const NewUser = await User.create(req.body);
       res.json(NewUser);
     } else {
@@ -39,17 +41,14 @@ export const loginUser: RequestHandler = asyncHandler(
           },
           { new: true }
         );
-        const { _id, firstname, lastname, email, mobile } = findUser;
+        const { _id, email } = findUser;
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
           maxAge: 72 * 60 * 60 * 1000,
         });
         res.json({
           _id,
-          firstname,
-          lastname,
           email,
-          mobile,
           token: generateToken(findUser._id),
         });
       } else {
@@ -117,7 +116,7 @@ export const updateAUser: RequestHandler = asyncHandler(
     const { _id } = req.user;
     validateMongoDbId(_id);
     try {
-      const { firstname, lastname, email, mobile } = req.body;
+      const { firstname, lastname, email } = req.body;
 
       // check if user exists and update
       const updatedUser = await User.findOneAndUpdate(
@@ -126,7 +125,6 @@ export const updateAUser: RequestHandler = asyncHandler(
           firstname,
           lastname,
           email,
-          mobile,
         },
         {
           new: true,

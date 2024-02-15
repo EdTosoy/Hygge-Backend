@@ -5,20 +5,11 @@ import { IUser } from "@types";
 // Declare the Schema of the Mongo model
 const userSchema: Schema<IUser> = new Schema(
   {
-    firstname: {
-      type: String,
-      required: true,
-    },
-    lastname: {
+    username: {
       type: String,
       required: true,
     },
     email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    mobile: {
       type: String,
       required: true,
       unique: true,
