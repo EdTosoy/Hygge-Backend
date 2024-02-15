@@ -41,7 +41,7 @@ export const loginUser: RequestHandler = asyncHandler(
           },
           { new: true }
         );
-        const { _id, email } = findUser;
+        const { _id, email, username } = findUser;
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
           maxAge: 72 * 60 * 60 * 1000,
@@ -49,6 +49,7 @@ export const loginUser: RequestHandler = asyncHandler(
         res.json({
           _id,
           email,
+          username,
           token: generateToken(findUser._id),
         });
       } else {
