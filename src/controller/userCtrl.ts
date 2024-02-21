@@ -6,7 +6,7 @@ import { validateMongoDbId } from "utils";
 import { generateRefreshToken, generateToken } from "config";
 
 // Register A User
-export const createUser: RequestHandler = asyncHandler(
+export const signUpUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     const { confirmPassword, password, email } = req.body;
 
@@ -24,7 +24,7 @@ export const createUser: RequestHandler = asyncHandler(
 );
 
 // Login A user
-export const loginUser: RequestHandler = asyncHandler(
+export const signInUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
@@ -61,6 +61,30 @@ export const loginUser: RequestHandler = asyncHandler(
   }
 );
 
+//Logout User
+export const logoutUser: RequestHandler = asyncHandler(
+  async (req: Request, res: Response): Promise<any> => {
+    const { refreshToken } = req.cookies;
+    if (!refreshToken) throw new Error("No Refresh Token in Cookies");
+
+    const user = await User.findOne({ refreshToken });
+    if (!user) {
+      res.clearCookie("refreshToken", {
+        httpOnly: true,
+        secure: true,
+      });
+      return res.sendStatus(204);
+    }
+    await User.findOneAndUpdate({ refreshToken }, { refreshToken: "" });
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+    });
+    return res.sendStatus(204);
+  }
+);
+
+/// =================================================================================================
 // Handle Refresh Token
 export const refreshToken: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
@@ -186,29 +210,6 @@ export const unblockUser: RequestHandler = asyncHandler(
     } catch (error) {
       throw new Error(String(error));
     }
-  }
-);
-
-//Logout User
-export const logoutUser: RequestHandler = asyncHandler(
-  async (req: Request, res: Response): Promise<any> => {
-    const { refreshToken } = req.cookies;
-    if (!refreshToken) throw new Error("No Refresh Token in Cookies");
-
-    const user = await User.findOne({ refreshToken });
-    if (!user) {
-      res.clearCookie("refreshToken", {
-        httpOnly: true,
-        secure: true,
-      });
-      return res.sendStatus(204);
-    }
-    await User.findOneAndUpdate({ refreshToken }, { refreshToken: "" });
-    res.clearCookie("refreshToken", {
-      httpOnly: true,
-      secure: true,
-    });
-    return res.sendStatus(204);
   }
 );
 

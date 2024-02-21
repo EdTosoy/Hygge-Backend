@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import {
-  createUser,
-  loginUser,
+  signUpUser,
+  signInUser,
   getAllUser,
   getAUser,
   deleteAUser,
@@ -22,8 +22,8 @@ authRouter.get("/logout", logoutUser);
 authRouter.get("/:id", authMiddleware, isAdmin, getAUser);
 
 // POST REQUESTS
-authRouter.post("/register", createUser);
-authRouter.post("/login", loginUser);
+authRouter.post("/sign-up", signUpUser);
+authRouter.post("/sign-in", signInUser);
 
 // PUT REQUESTS
 authRouter.put("/update-user", authMiddleware, updateAUser);
