@@ -6,11 +6,15 @@ import { Posts, User } from "models";
 export const authMiddleware: RequestHandler = asyncHandler(
   async (req: Request, _res: Response, next: NextFunction) => {
     let token: string | undefined;
-    if (
+
+    const authorizationToken = Boolean(
       req.headers.authorization &&
-      req.headers.authorization.startsWith("Bearer")
-    ) {
-      token = req.headers.authorization.split(" ")[1];
+        req.headers.authorization.startsWith("Bearer") &&
+        req.headers.authorization.split(" ")[1]
+    );
+    const refreshToken = req.cookies.refreshToken;
+    if (authorizationToken || refreshToken) {
+      token = authorizationToken || refreshToken;
       try {
         if (token) {
           const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
@@ -43,7 +47,7 @@ export const isAdmin: RequestHandler = asyncHandler(
 export const isAuthorizedUser: RequestHandler = asyncHandler(
   async (req: Request, _res: Response, next: NextFunction) => {
     const { email } = req.user;
-    const { postId } = req.body;
+    const postId = req.body.postId || req.params.postId;
 
     const user = await User.findOne({ email });
     const post = await Posts.findById(postId);
@@ -55,7 +59,7 @@ export const isAuthorizedUser: RequestHandler = asyncHandler(
       throw new Error("Post not found");
     }
 
-    if (post.userId !== user.id) {
+    if (post.userId.toString() !== user.id) {
       throw new Error("Not Authorized to manipulate this post");
     }
 

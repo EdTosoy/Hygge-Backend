@@ -16,7 +16,7 @@ postsRouter.put("/update-post", authMiddleware, isAuthorizedUser, updatePost);
 
 // DELETE REQUESTS
 postsRouter.delete(
-  "/delete-post",
+  "/delete-post/:postId",
   authMiddleware,
   isAuthorizedUser,
   deletePost

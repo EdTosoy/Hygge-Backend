@@ -35,15 +35,15 @@ export const createPost: RequestHandler = asyncHandler(
 export const updatePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const { title, content, mediaUrl, postId } = req.body;
+      const { newTitle, newContent, newMediaUrl, postId } = req.body;
       const updatedPost = await Posts.findByIdAndUpdate(
         {
           _id: postId,
         },
         {
-          title,
-          content,
-          mediaUrl,
+          title: newTitle,
+          content: newContent,
+          mediaUrl: newMediaUrl,
         },
         { new: true }
       );
@@ -57,7 +57,7 @@ export const updatePost: RequestHandler = asyncHandler(
 export const deletePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const { postId } = req.body;
+      const { postId } = req.params;
       await Posts.findByIdAndDelete({ _id: postId });
       res.json("Post deleted successfully");
     } catch (error) {
