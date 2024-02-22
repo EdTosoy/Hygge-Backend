@@ -13,6 +13,18 @@ export const getAllPost: RequestHandler = asyncHandler(
   }
 );
 
+export const getAllUserPosts: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { _id } = req.user;
+    try {
+      const allPost = await Posts.find({ userId: _id });
+      res.json(allPost);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+);
+
 export const createPost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {

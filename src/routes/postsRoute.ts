@@ -1,5 +1,11 @@
 import express, { Router } from "express";
-import { getAllPost, createPost, updatePost, deletePost } from "controller";
+import {
+  getAllPost,
+  getAllUserPosts,
+  createPost,
+  updatePost,
+  deletePost,
+} from "controller";
 
 import { authMiddleware, isAuthorizedUser } from "middleware";
 
@@ -7,6 +13,7 @@ export const postsRouter: Router = express.Router();
 
 // GET REQUESTS
 postsRouter.get("/all-posts", getAllPost);
+postsRouter.get("/user-posts", authMiddleware, getAllUserPosts);
 
 // POST REQUESTS
 postsRouter.post("/create-post", createPost);

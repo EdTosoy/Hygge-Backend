@@ -11,4 +11,10 @@ export {
   updateAUser,
 } from "./userCtrl";
 
-export { getAllPost, createPost, updatePost, deletePost } from "./postsCtrl";
+export {
+  getAllPost,
+  getAllUserPosts,
+  createPost,
+  updatePost,
+  deletePost,
+} from "./postsCtrl";
