@@ -30,6 +30,12 @@ const userSchema: Schema<IUser> = new Schema(
       type: String,
       default: "",
     },
+    bio: {
+      type: String,
+    },
+    profileId: {
+      type: String,
+    },
   },
   {
     timestamps: true,

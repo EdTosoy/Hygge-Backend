@@ -8,14 +8,18 @@ import { generateRefreshToken, generateToken } from "config";
 // Register A User
 export const signUpUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const { confirmPassword, password, email } = req.body;
+    const { confirmPassword, password, email, username } = req.body;
 
     const findUser = await User.findOne({ email });
     if (password !== confirmPassword)
       throw new Error("Password does not match");
 
     if (!findUser) {
-      const NewUser = await User.create(req.body);
+      const NewUser = await User.create({
+        ...req.body,
+        /// get the ID from email
+        profileId: `h/${username}.2023029731`,
+      });
       res.json(NewUser);
     } else {
       throw new Error("User already exists");
@@ -41,7 +45,7 @@ export const signInUser: RequestHandler = asyncHandler(
           },
           { new: true }
         );
-        const { _id, email, username } = findUser;
+        const { _id, email, username, profileId, bio } = findUser;
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
           maxAge: 72 * 60 * 60 * 1000,
@@ -50,6 +54,8 @@ export const signInUser: RequestHandler = asyncHandler(
           _id,
           email,
           username,
+          profileId,
+          bio,
           token: generateToken(findUser._id),
         });
       } else {
@@ -57,6 +63,34 @@ export const signInUser: RequestHandler = asyncHandler(
       }
     } else {
       throw new Error("User not found");
+    }
+  }
+);
+
+// Update A user
+export const updateAUser: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { _id } = req.user;
+    validateMongoDbId(_id);
+    try {
+      const { username, profileId, bio } = req.body;
+
+      // check if user exists and update
+      const updatedUser = await User.findOneAndUpdate(
+        _id,
+        {
+          username,
+          profileId,
+          bio,
+        },
+        {
+          new: true,
+        }
+      );
+
+      res.json(updatedUser);
+    } catch (error) {
+      throw new Error(String(error));
     }
   }
 );
@@ -129,34 +163,6 @@ export const getAUser: RequestHandler = asyncHandler(
     try {
       const user = await User.findById(id);
       res.json(user);
-    } catch (error) {
-      throw new Error(String(error));
-    }
-  }
-);
-
-// Update A user
-export const updateAUser: RequestHandler = asyncHandler(
-  async (req: Request, res: Response) => {
-    const { _id } = req.user;
-    validateMongoDbId(_id);
-    try {
-      const { firstname, lastname, email } = req.body;
-
-      // check if user exists and update
-      const updatedUser = await User.findOneAndUpdate(
-        _id,
-        {
-          firstname,
-          lastname,
-          email,
-        },
-        {
-          new: true,
-        }
-      );
-
-      res.json(updatedUser);
     } catch (error) {
       throw new Error(String(error));
     }
