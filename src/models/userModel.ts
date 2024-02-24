@@ -41,6 +41,10 @@ const userSchema: Schema<IUser> = new Schema(
       default:
         "https://res.cloudinary.com/dxsc1spde/image/upload/v1708760699/tiibc5hyfrfdluz0urkg.png",
     },
+    wallpaper: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

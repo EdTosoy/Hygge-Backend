@@ -45,7 +45,8 @@ export const signInUser: RequestHandler = asyncHandler(
           },
           { new: true }
         );
-        const { _id, email, username, profileId, bio, avatar } = findUser;
+        const { _id, email, username, profileId, bio, avatar, wallpaper } =
+          findUser;
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
           maxAge: 72 * 60 * 60 * 1000,
@@ -57,6 +58,7 @@ export const signInUser: RequestHandler = asyncHandler(
           profileId,
           bio,
           avatar,
+          wallpaper,
           token: generateToken(findUser._id),
         });
       } else {
@@ -74,7 +76,7 @@ export const updateAUser: RequestHandler = asyncHandler(
     const { _id } = req.user;
     validateMongoDbId(_id);
     try {
-      const { username, profileId, bio, avatar } = req.body;
+      const { username, profileId, bio, avatar, wallpaper } = req.body;
 
       // check if user exists and update
       const updatedUser = await User.findOneAndUpdate(
@@ -84,6 +86,7 @@ export const updateAUser: RequestHandler = asyncHandler(
           profileId,
           bio,
           avatar,
+          wallpaper,
         },
         {
           new: true,

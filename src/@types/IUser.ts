@@ -11,4 +11,5 @@ export interface IUser extends Document {
   role: string;
   username: string;
   avatar: string;
+  wallpaper: string;
 }
