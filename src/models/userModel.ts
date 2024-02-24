@@ -43,7 +43,8 @@ const userSchema: Schema<IUser> = new Schema(
     },
     wallpaper: {
       type: String,
-      default: "",
+      default:
+        "https://res.cloudinary.com/dxsc1spde/image/upload/v1708773706/zjmgluhiyqh60cz2xges.png",
     },
   },
   {
