@@ -10,4 +10,5 @@ export interface IUser extends Document {
   refreshToken: string;
   role: string;
   username: string;
+  avatar: string;
 }
