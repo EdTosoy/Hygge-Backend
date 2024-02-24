@@ -1,10 +1,9 @@
 import { Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
 import jwt, { GetPublicKeyOrSecret, Secret, VerifyErrors } from "jsonwebtoken";
-import { User } from "models";
+import { Posts, User } from "models";
 import { validateMongoDbId } from "utils";
 import { generateRefreshToken, generateToken } from "config";
-
 // Register A User
 export const signUpUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
@@ -77,6 +76,11 @@ export const updateAUser: RequestHandler = asyncHandler(
     validateMongoDbId(_id);
     try {
       const { username, profileId, bio, avatar, wallpaper } = req.body;
+
+      await Posts.findOneAndUpdate(
+        { userId: _id },
+        { username, userAvatar: avatar }
+      );
 
       // check if user exists and update
       const updatedUser = await User.findOneAndUpdate(

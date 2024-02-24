@@ -34,6 +34,11 @@ const postsSchema: Schema<IPosts> = new Schema(
       type: Number,
       default: 0,
     },
+    userAvatar: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dxsc1spde/image/upload/v1708760699/tiibc5hyfrfdluz0urkg.png",
+    },
   },
   {
     timestamps: true,

@@ -16,7 +16,7 @@ postsRouter.get("/all-posts", getAllPost);
 postsRouter.get("/user-posts", authMiddleware, getAllUserPosts);
 
 // POST REQUESTS
-postsRouter.post("/create-post", createPost);
+postsRouter.post("/create-post", authMiddleware, createPost);
 
 // PUT REQUESTS
 postsRouter.put("/update-post", authMiddleware, isAuthorizedUser, updatePost);

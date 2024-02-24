@@ -9,4 +9,5 @@ export interface IPosts extends Document {
   likesCount?: number;
   commentsCount?: number;
   sharesCount?: number;
+  userAvatar: string;
 }

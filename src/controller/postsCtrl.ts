@@ -1,3 +1,4 @@
+import { IUser } from "@types";
 import { Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { Posts } from "models";
@@ -29,12 +30,14 @@ export const createPost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
       const { title, content, mediaUrl, userId, username } = req.body;
+      const { avatar } = req.user;
       const newPost = new Posts({
         title,
         content,
         mediaUrl,
         userId,
         username,
+        userAvatar: avatar,
       });
       const savedPost = await newPost.save();
       res.json(savedPost);
