@@ -22,17 +22,17 @@ const postsSchema: Schema<IPosts> = new Schema(
     mediaUrl: {
       type: String,
     },
-    likesCount: {
-      type: Number,
-      default: 0,
+    likes: {
+      type: Array<string>,
+      default: [],
     },
-    commentsCount: {
-      type: Number,
-      default: 0,
+    comments: {
+      type: Array<string>,
+      default: [],
     },
-    sharesCount: {
-      type: Number,
-      default: 0,
+    shares: {
+      type: Array<string>,
+      default: [],
     },
     userAvatar: {
       type: String,

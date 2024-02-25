@@ -68,6 +68,47 @@ export const updatePost: RequestHandler = asyncHandler(
     }
   }
 );
+export const likePost: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const { postId } = req.body;
+
+      const updatedPost = await Posts.findByIdAndUpdate(
+        {
+          _id: postId,
+        },
+        {
+          $addToSet: { likes: req.user._id },
+        },
+        { new: true }
+      );
+      res.json(updatedPost);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+);
+
+export const unLikePost: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const { postId } = req.body;
+
+      const updatedPost = await Posts.findByIdAndUpdate(
+        {
+          _id: postId,
+        },
+        {
+          $pull: { likes: req.user._id },
+        },
+        { new: true }
+      );
+      res.json(updatedPost);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+);
 
 export const deletePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {

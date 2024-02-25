@@ -6,8 +6,8 @@ export interface IPosts extends Document {
   userId: Schema.Types.ObjectId;
   username: string;
   mediaUrl?: string;
-  likesCount?: number;
-  commentsCount?: number;
-  sharesCount?: number;
+  likes?: string[];
+  comments?: string[];
+  shares?: string[];
   userAvatar: string;
 }

@@ -17,4 +17,6 @@ export {
   createPost,
   updatePost,
   deletePost,
+  likePost,
+  unLikePost,
 } from "./postsCtrl";

@@ -5,6 +5,8 @@ import {
   createPost,
   updatePost,
   deletePost,
+  likePost,
+  unLikePost,
 } from "controller";
 
 import { authMiddleware, isAuthorizedUser } from "middleware";
@@ -20,6 +22,8 @@ postsRouter.post("/create-post", authMiddleware, createPost);
 
 // PUT REQUESTS
 postsRouter.put("/update-post", authMiddleware, isAuthorizedUser, updatePost);
+postsRouter.put("/like-post", authMiddleware, likePost);
+postsRouter.put("/unlike-post", authMiddleware, unLikePost);
 
 // DELETE REQUESTS
 postsRouter.delete(
