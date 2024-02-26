@@ -110,6 +110,36 @@ export const unLikePost: RequestHandler = asyncHandler(
   }
 );
 
+export const commentPost: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const { postId, comment, date } = req.body;
+      const user = req.user as IUser;
+
+      const updatedPost = await Posts.findByIdAndUpdate(
+        {
+          _id: postId,
+        },
+        {
+          $addToSet: {
+            comments: {
+              userId: user._id,
+              username: user.username,
+              userAvatar: user.avatar,
+              date,
+              comment,
+            },
+          },
+        },
+        { new: true }
+      );
+      res.json(updatedPost);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+);
+
 export const deletePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {

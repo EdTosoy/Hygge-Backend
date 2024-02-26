@@ -1,12 +1,13 @@
 import express, { Router } from "express";
 import {
+  commentPost,
+  createPost,
+  deletePost,
   getAllPost,
   getAllUserPosts,
-  createPost,
-  updatePost,
-  deletePost,
   likePost,
   unLikePost,
+  updatePost,
 } from "controller";
 
 import { authMiddleware, isAuthorizedUser } from "middleware";
@@ -24,6 +25,7 @@ postsRouter.post("/create-post", authMiddleware, createPost);
 postsRouter.put("/update-post", authMiddleware, isAuthorizedUser, updatePost);
 postsRouter.put("/like-post", authMiddleware, likePost);
 postsRouter.put("/unlike-post", authMiddleware, unLikePost);
+postsRouter.put("/comment-post", authMiddleware, commentPost);
 
 // DELETE REQUESTS
 postsRouter.delete(

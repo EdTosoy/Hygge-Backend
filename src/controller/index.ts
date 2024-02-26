@@ -12,11 +12,12 @@ export {
 } from "./userCtrl";
 
 export {
+  commentPost,
+  createPost,
+  deletePost,
   getAllPost,
   getAllUserPosts,
-  createPost,
-  updatePost,
-  deletePost,
   likePost,
   unLikePost,
+  updatePost,
 } from "./postsCtrl";
