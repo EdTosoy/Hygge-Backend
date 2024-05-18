@@ -21,3 +21,9 @@ export {
   unLikePost,
   updatePost,
 } from "./postsCtrl";
+
+export {
+  createCategory,
+  getAllCategories,
+  deleteCategory,
+} from "./categoryCtrl";

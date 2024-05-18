@@ -7,7 +7,7 @@ import cors from "cors";
 
 import { notFound, errorHandler } from "middleware";
 import { dbConnect } from "config";
-import { authRouter, postsRouter } from "routes";
+import { authRouter, categoryRouter, postsRouter } from "routes";
 
 dotenv.config();
 dbConnect();
@@ -32,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use("/api/user", authRouter);
 app.use("/api/posts", postsRouter);
+app.use("/api/categories", categoryRouter);
 
 app.use(notFound);
 app.use(errorHandler);
