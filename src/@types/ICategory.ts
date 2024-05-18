@@ -7,4 +7,6 @@ export interface ICategory extends Document {
     avatar: string;
   };
   admin: String[];
+  url: string;
+  ionIconName: string;
 }

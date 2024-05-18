@@ -17,10 +17,13 @@ export const getAllCategories: RequestHandler = asyncHandler(
 export const createCategory: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const { categoryName } = req.body;
+      const { categoryName, url, ionIconName } = req.body;
+      console.log(req.body);
       const { username, avatar, id } = req.user;
       const newCategory = new Category({
         categoryName,
+        url: url,
+        ionIconName: ionIconName,
         creator: {
           username,
           avatar,

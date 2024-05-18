@@ -23,6 +23,14 @@ const categorySchema: Schema<ICategory> = new Schema(
       type: [String],
       required: true,
     },
+    url: {
+      type: String,
+      required: true,
+    },
+    ionIconName: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
