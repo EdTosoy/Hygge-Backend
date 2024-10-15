@@ -22,6 +22,10 @@ const postsSchema: Schema<IPosts> = new Schema(
     mediaUrl: {
       type: String,
     },
+    category: {
+      type: String,
+      required: true,
+    },
     likes: {
       type: Array<string>,
       default: [],
