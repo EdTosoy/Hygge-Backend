@@ -6,7 +6,7 @@ import { Posts } from "models";
 export const getAllPost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const allPost = await Posts.find().sort({ updatedAt: -1 });
+      const allPost = await Posts.find().sort({ createdAt: -1 });
       res.json(allPost);
     } catch (error) {
       throw new Error(String(error));
