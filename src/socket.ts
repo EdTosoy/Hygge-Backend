@@ -37,7 +37,6 @@ export const setupSocketIO = (io: SocketIOServer) => {
 
       // Add your custom event handlers here
       socket.on("sendMessage", (data) => {
-        console.log("hello");
         console.log("Message received:", data);
         io.emit("newMessage", data); // Broadcast the message to all connected clients
       });

@@ -13,6 +13,7 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "module": "commonjs",
+
     "rootDir": "./src",
     "strict": true,
     "strictPropertyInitialization": false,
