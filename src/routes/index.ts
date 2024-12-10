@@ -1,3 +1,4 @@
 export { authRouter } from "./authRoute";
-export { postsRouter } from "./postsRoute";
 export { categoryRouter } from "./categoryRoute";
+export { messageRouter } from "./messageRoute";
+export { postsRouter } from "./postsRoute";

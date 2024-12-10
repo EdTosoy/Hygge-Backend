@@ -27,3 +27,5 @@ export {
   getAllCategories,
   deleteCategory,
 } from "./categoryCtrl";
+
+export { createMessage, getAllMessages, deleteMessage } from "./messageCtrl";
