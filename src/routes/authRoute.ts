@@ -19,7 +19,8 @@ export const authRouter: Router = express.Router();
 authRouter.get("/all-users", getAllUser);
 authRouter.get("/refresh", refreshToken);
 authRouter.get("/logout", logoutUser);
-authRouter.get("/:id", authMiddleware, isAdmin, getAUser);
+// authRouter.get("/:id", authMiddleware, isAdmin, getAUser);
+authRouter.get("/:id", authMiddleware, getAUser);
 
 // POST REQUESTS
 authRouter.post("/sign-up", signUpUser);

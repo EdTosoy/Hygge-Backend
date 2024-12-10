@@ -14,6 +14,7 @@ import {
   categoryRouter,
   postsRouter,
   messageRouter,
+  contactsRouter,
 } from "./routes";
 import { setupSocketIO } from "./socket";
 
@@ -53,6 +54,7 @@ const startServer = async () => {
   app.use("/api/posts", postsRouter);
   app.use("/api/categories", categoryRouter);
   app.use("/api/messages", messageRouter);
+  app.use("/api/contacts", contactsRouter);
 
   app.use(notFound);
   app.use(errorHandler);
