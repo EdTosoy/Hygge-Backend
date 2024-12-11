@@ -5,12 +5,13 @@ import { Contact } from "models";
 
 export const getAllContacts: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    // try {
-    //   const allCategories = await Category.find();
-    //   res.json(allCategories);
-    // } catch (error) {
-    //   throw new Error(String(error));
-    // }
+    try {
+      const { _id } = req.user;
+      const allContacts = await Contact.find({ "contactOf.id": _id });
+      res.json(allContacts);
+    } catch (error) {
+      throw new Error(String(error));
+    }
   }
 );
 
@@ -18,7 +19,16 @@ export const addContact: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
       const { contactUserId, contactUsername, contactAvatar } = req.body;
-      const { username, avatar, id } = req.user;
+      const { username, avatar, _id } = req.user;
+
+      const isContactExist = await Contact.findOne({
+        "contactInfo.userId": contactUserId,
+        "contactOf.id": _id,
+      });
+      if (isContactExist) {
+        res.status(400);
+        throw new Error("Contact already exist");
+      }
       const newContact = new Contact({
         contactInfo: {
           userId: contactUserId,
@@ -28,7 +38,7 @@ export const addContact: RequestHandler = asyncHandler(
         contactOf: {
           username,
           avatar,
-          id,
+          id: _id,
         },
       });
       const saveMessage = await newContact.save();

@@ -4,17 +4,33 @@ import { IContact } from "@types";
 // Declare the Schema of the Mongo model
 const contactSchema: Schema<IContact> = new Schema(
   {
-    userId: {
-      type: String,
-      required: true,
+    contactInfo: {
+      userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      username: {
+        type: String,
+        required: true,
+      },
+      avatar: {
+        type: String,
+        required: true,
+      },
     },
-    username: {
-      type: String,
-      required: true,
-    },
-    avatar: {
-      type: String,
-      required: true,
+    contactOf: {
+      username: {
+        type: String,
+        required: true,
+      },
+      avatar: {
+        type: String,
+        required: true,
+      },
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
     },
   },
   {

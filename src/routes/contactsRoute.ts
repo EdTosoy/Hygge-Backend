@@ -5,7 +5,7 @@ import { authMiddleware } from "middleware";
 export const contactsRouter: Router = express.Router();
 
 // GET REQUESTS
-contactsRouter.get("/all-contacts", getAllContacts);
+contactsRouter.get("/all-contacts", authMiddleware, getAllContacts);
 
 // POST REQUESTS
 contactsRouter.post("/add-contact", authMiddleware, addContact);

@@ -1,7 +1,14 @@
 import { Document } from "mongoose";
 
 export interface IContact extends Document {
-  userId: string;
-  username: string;
-  avatar: string;
+  contactInfo: {
+    userId: string;
+    username: string;
+    avatar: string;
+  };
+  contactOf: {
+    username: string;
+    avatar: string;
+    id: string;
+  };
 }
