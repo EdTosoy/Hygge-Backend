@@ -8,7 +8,9 @@ export {
   logoutUser,
   refreshToken,
   unblockUser,
+  savePost,
   updateAUser,
+  unSavePost,
 } from "./userCtrl";
 
 export {

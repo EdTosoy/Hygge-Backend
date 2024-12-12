@@ -15,6 +15,12 @@ const postsSchema: Schema<IPosts> = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    savedBy: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     username: {
       type: String,
       required: true,

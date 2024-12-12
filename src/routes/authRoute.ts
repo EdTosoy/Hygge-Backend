@@ -10,6 +10,8 @@ import {
   unblockUser,
   logoutUser,
   refreshToken,
+  savePost,
+  unSavePost,
 } from "controller";
 import { authMiddleware, isAdmin } from "middleware";
 
@@ -25,6 +27,8 @@ authRouter.get("/:id", authMiddleware, getAUser);
 // POST REQUESTS
 authRouter.post("/sign-up", signUpUser);
 authRouter.post("/sign-in", signInUser);
+authRouter.post("/save", authMiddleware, savePost);
+authRouter.post("/unsave", authMiddleware, unSavePost);
 
 // PUT REQUESTS
 authRouter.put("/update-user", authMiddleware, updateAUser);

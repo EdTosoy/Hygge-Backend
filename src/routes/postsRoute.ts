@@ -8,6 +8,7 @@ import {
   likePost,
   unLikePost,
   updatePost,
+  savePost,
 } from "controller";
 
 import { authMiddleware, isAuthorizedUser } from "middleware";
@@ -20,6 +21,7 @@ postsRouter.get("/user-posts", authMiddleware, getAllUserPosts);
 
 // POST REQUESTS
 postsRouter.post("/create-post", authMiddleware, createPost);
+postsRouter.post("/save-post", authMiddleware, savePost);
 
 // PUT REQUESTS
 postsRouter.put("/update-post", authMiddleware, isAuthorizedUser, updatePost);

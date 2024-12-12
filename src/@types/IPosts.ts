@@ -11,4 +11,5 @@ export interface IPosts extends Document {
   shares?: string[];
   userAvatar: string;
   category: string;
+  savedBy: string[];
 }

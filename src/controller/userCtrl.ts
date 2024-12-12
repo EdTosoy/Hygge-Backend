@@ -242,4 +242,58 @@ export const deleteAUser: RequestHandler = asyncHandler(
   }
 );
 
-// disable user
+export const savePost: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const { postId } = req.body;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        {
+          _id: req.user._id,
+        },
+        {
+          $addToSet: { savedPosts: postId },
+        },
+        { new: true }
+      );
+      await Posts.findByIdAndUpdate(
+        postId,
+        {
+          $addToSet: { savedBy: req.user._id },
+        },
+        { new: true }
+      );
+      res.json(updatedUser);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+);
+
+export const unSavePost: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const { postId } = req.body;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        {
+          _id: req.user._id,
+        },
+        {
+          $pull: { savedPosts: postId },
+        },
+        { new: true }
+      );
+      await Posts.findByIdAndUpdate(
+        postId,
+        {
+          $pull: { savedBy: req.user._id },
+        },
+        { new: true }
+      );
+      res.json(updatedUser);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+);
