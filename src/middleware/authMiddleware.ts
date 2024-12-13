@@ -45,6 +45,7 @@ export const isAdmin: RequestHandler = asyncHandler(
     }
   }
 );
+
 export const isAuthorizedUser: RequestHandler = asyncHandler(
   async (req: Request, _res: Response, next: NextFunction) => {
     const { email } = req.user;

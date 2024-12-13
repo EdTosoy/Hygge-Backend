@@ -48,15 +48,3 @@ export const addContact: RequestHandler = asyncHandler(
     }
   }
 );
-
-export const deleteContact: RequestHandler = asyncHandler(
-  async (req: Request, res: Response) => {
-    // try {
-    //   const { categoryId } = req.params;
-    //   await Category.findByIdAndDelete({ _id: categoryId });
-    //   res.json("Category deleted successfully");
-    // } catch (error) {
-    //   throw new Error(String(error));
-    // }
-  }
-);

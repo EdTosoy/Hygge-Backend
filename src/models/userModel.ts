@@ -32,6 +32,12 @@ const userSchema: Schema<IUser> = new Schema(
         ref: "Post",
       },
     ],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
     refreshToken: {
       type: String,
       default: "",

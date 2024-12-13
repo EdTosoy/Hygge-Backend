@@ -13,4 +13,5 @@ export interface IUser extends Document {
   avatar: string;
   wallpaper: string;
   savedPosts: string[];
+  likes: string[];
 }

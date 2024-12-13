@@ -30,6 +30,6 @@ export {
   deleteCategory,
 } from "./categoryCtrl";
 
-export { addContact, getAllContacts, deleteContact } from "./contactCtrl";
+export { addContact, getAllContacts } from "./contactCtrl";
 
 export { createMessage, getAllMessages, deleteMessage } from "./messageCtrl";

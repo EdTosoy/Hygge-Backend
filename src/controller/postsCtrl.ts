@@ -1,7 +1,7 @@
 import { IUser } from "@types";
 import { Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
-import { Posts } from "models";
+import { Posts, User } from "models";
 
 export const getAllPost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
@@ -51,7 +51,7 @@ export const createPost: RequestHandler = asyncHandler(
 export const updatePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const { newTitle, newContent, newMediaUrl, postId } = req.body;
+      const { newTitle, newContent, newMediaUrl, postId, category } = req.body;
       const updatedPost = await Posts.findByIdAndUpdate(
         {
           _id: postId,
@@ -60,6 +60,7 @@ export const updatePost: RequestHandler = asyncHandler(
           title: newTitle,
           content: newContent,
           mediaUrl: newMediaUrl,
+          category,
         },
         { new: true }
       );
@@ -73,6 +74,7 @@ export const likePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
       const { postId } = req.body;
+      const { _id } = req.user;
 
       const updatedPost = await Posts.findByIdAndUpdate(
         {
@@ -80,6 +82,14 @@ export const likePost: RequestHandler = asyncHandler(
         },
         {
           $addToSet: { likes: req.user._id },
+        },
+        { new: true }
+      );
+
+      await User.findByIdAndUpdate(
+        _id,
+        {
+          $addToSet: { likes: postId },
         },
         { new: true }
       );
