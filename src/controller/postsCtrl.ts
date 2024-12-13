@@ -51,7 +51,8 @@ export const createPost: RequestHandler = asyncHandler(
 export const updatePost: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const { newTitle, newContent, newMediaUrl, postId, category } = req.body;
+      const { newTitle, newContent, newMediaUrl, postId, newCategory } =
+        req.body;
       const updatedPost = await Posts.findByIdAndUpdate(
         {
           _id: postId,
@@ -60,7 +61,7 @@ export const updatePost: RequestHandler = asyncHandler(
           title: newTitle,
           content: newContent,
           mediaUrl: newMediaUrl,
-          category,
+          category: newCategory,
         },
         { new: true }
       );
