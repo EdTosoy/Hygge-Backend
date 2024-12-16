@@ -39,7 +39,17 @@ const startServer = async () => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
-  app.use(cors());
+  app.use(
+    cors({
+      origin: [
+        "http://localhost:5173", // Local React app
+        "https://your-deployed-react-app.com", // Deployed React app
+      ],
+      methods: ["GET", "POST"],
+      allowedHeaders: ["Access-Control-Allow-Origin"],
+      credentials: true,
+    })
+  );
 
   app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");

@@ -11,6 +11,9 @@
   "repository": {
     "type": "git"
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "Ed Tosoy",
   "license": "ISC",
   "dependencies": {
