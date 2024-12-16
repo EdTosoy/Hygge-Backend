@@ -1,6 +1,6 @@
 import express, { Router } from "express";
-import { addContact, getAllContacts } from "controller";
-import { authMiddleware } from "middleware";
+import { addContact, getAllContacts } from "../controller";
+import { authMiddleware } from "../middleware";
 
 export const contactsRouter: Router = express.Router();
 

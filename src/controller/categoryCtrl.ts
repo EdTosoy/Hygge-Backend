@@ -1,7 +1,7 @@
-import { IUser } from "@types";
+import { IUser } from "../@types";
 import { Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
-import { Category } from "models";
+import { Category } from "../models";
 
 export const getAllCategories: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {

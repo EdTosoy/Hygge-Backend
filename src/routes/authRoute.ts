@@ -12,8 +12,8 @@ import {
   refreshToken,
   savePost,
   unSavePost,
-} from "controller";
-import { authMiddleware, isAdmin } from "middleware";
+} from "../controller";
+import { authMiddleware, isAdmin } from "../middleware";
 
 export const authRouter: Router = express.Router();
 

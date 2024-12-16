@@ -1,6 +1,10 @@
 import express, { Router } from "express";
-import { createCategory, getAllCategories, deleteCategory } from "controller";
-import { authMiddleware } from "middleware";
+import {
+  createCategory,
+  getAllCategories,
+  deleteCategory,
+} from "../controller";
+import { authMiddleware } from "../middleware";
 
 export const categoryRouter: Router = express.Router();
 

@@ -1,9 +1,9 @@
 import { Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
 import jwt, { GetPublicKeyOrSecret, Secret, VerifyErrors } from "jsonwebtoken";
-import { Posts, User } from "models";
-import { validateMongoDbId } from "utils";
-import { generateRefreshToken, generateToken } from "config";
+import { Posts, User } from "../models";
+import { validateMongoDbId } from "../utils";
+import { generateRefreshToken, generateToken } from "../config";
 // Register A User
 export const signUpUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {

@@ -1,6 +1,6 @@
 import express, { Router } from "express";
-import { createMessage, getAllMessages, deleteMessage } from "controller";
-import { authMiddleware } from "middleware";
+import { createMessage, getAllMessages, deleteMessage } from "../controller";
+import { authMiddleware } from "../middleware";
 
 export const messageRouter: Router = express.Router();
 

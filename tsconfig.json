@@ -1,43 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "lib": ["es2020"],
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "pretty": true,
-    "sourceMap": true,
-    "declaration": true,
-    "outDir": "dist",
-    "allowJs": true,
-    "noEmit": false,
-    "resolveJsonModule": true,
-    "importHelpers": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "target": "es2016",
     "module": "commonjs",
-
-    "rootDir": "./src",
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "baseUrl": "./src",
-    "paths": {
-      "routes": ["routes"],
-      "@types": ["@types"],
-      "@shared/*": ["shared/*"],
-      "models": ["models"],
-      "utils": ["utils"],
-      "config": ["config"],
-      "controller": ["controller"],
-      "middleware": ["middleware"]
-    },
-    "typeRoots": ["src/@types", "./node_modules/@types"],
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": ["./**/*.ts", "./**/*.json", ".env"],
-  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"],
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "typeRoots": ["src/@types", "./node_modules/@types"],
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
   }
 }

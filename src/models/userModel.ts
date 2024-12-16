@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import { IUser } from "@types";
+import { IUser } from "../@types";
 
 // Declare the Schema of the Mongo model
 const userSchema: Schema<IUser> = new Schema(

@@ -9,9 +9,9 @@ import {
   unLikePost,
   updatePost,
   savePost,
-} from "controller";
+} from "../controller";
 
-import { authMiddleware, isAuthorizedUser } from "middleware";
+import { authMiddleware, isAuthorizedUser } from "../middleware";
 
 export const postsRouter: Router = express.Router();
 
