@@ -1,6 +1,7 @@
 import jwt, { Secret } from "jsonwebtoken";
+import { ObjectId } from "mongoose";
 
-export const generateToken = (id: number) => {
+export const generateToken = (id: ObjectId) => {
   const secret: Secret = process.env.JWT_SECRET || "";
   if (!secret) {
     throw new Error("JWT secret is not defined.");

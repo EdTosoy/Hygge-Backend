@@ -73,7 +73,7 @@ export const signInUser: RequestHandler = asyncHandler(
 export const updateAUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     const { _id } = req.user;
-    validateMongoDbId(_id);
+    validateMongoDbId(_id.toString());
     try {
       const { username, profileId, bio, avatar, wallpaper } = req.body;
 

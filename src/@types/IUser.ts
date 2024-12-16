@@ -1,6 +1,7 @@
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 
 export interface IUser extends Document {
+  _id: ObjectId;
   bio: string;
   email: string;
   isBlocked: boolean;

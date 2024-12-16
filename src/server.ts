@@ -41,10 +41,7 @@ const startServer = async () => {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: [
-        "http://localhost:5173", // Local React app
-        "https://your-deployed-react-app.com", // Deployed React app
-      ],
+      origin: "*",
       methods: ["GET", "POST"],
       allowedHeaders: ["Access-Control-Allow-Origin"],
       credentials: true,
