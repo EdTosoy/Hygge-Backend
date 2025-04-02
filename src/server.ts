@@ -41,7 +41,7 @@ const startServer = async () => {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: ["https://capstone-hygge.onrender.com"],
+      origin: ["https://capstone-hygge.onrender.com", "http://localhost:5174"],
       credentials: true,
     })
   );
