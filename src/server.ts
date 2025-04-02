@@ -42,18 +42,12 @@ const startServer = async () => {
   app.use(
     cors({
       origin: "*",
-      methods: ["GET", "POST"],
-      allowedHeaders: ["Access-Control-Allow-Origin"],
       credentials: true,
     })
   );
 
   app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept, my-custom-header"
-    );
+   
     next();
   });
 
