@@ -41,7 +41,7 @@ const startServer = async () => {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: ["https://capstone-hygge.netlify.app"],
+      origin: ["https://capstone-hygge.onrender.com"],
       credentials: true,
     })
   );
