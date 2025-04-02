@@ -28,7 +28,7 @@ const startServer = async () => {
   const server = createServer(app);
   const io = new SocketIOServer(server, {
     cors: {
-      origin: "*",
+      origin: ["https://capstone-hygge.netlify.app"],
       methods: ["GET", "POST"],
       allowedHeaders: ["Access-Control-Allow-Origin"],
       credentials: true,
@@ -41,7 +41,7 @@ const startServer = async () => {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: "*",
+      origin: ["https://capstone-hygge.netlify.app"],
       credentials: true,
     })
   );
