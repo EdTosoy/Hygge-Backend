@@ -28,7 +28,7 @@ const startServer = async () => {
   const server = createServer(app);
   const io = new SocketIOServer(server, {
     cors: {
-      origin: ["https://capstone-hygge.netlify.app"],
+      origin: ["https://capstone-hygge.onrender.com", "http://localhost:5174"],
       methods: ["GET", "POST"],
       allowedHeaders: ["Access-Control-Allow-Origin"],
       credentials: true,
