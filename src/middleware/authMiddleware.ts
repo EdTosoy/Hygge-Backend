@@ -15,6 +15,7 @@ export const authMiddleware: RequestHandler = asyncHandler(
     const refreshToken = req.cookies.refreshToken;
     if (authorizationToken || refreshToken) {
       token = authorizationToken || refreshToken;
+      console.log("the token:", token)
       try {
         if (token) {
           const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
