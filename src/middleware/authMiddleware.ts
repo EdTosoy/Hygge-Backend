@@ -12,10 +12,9 @@ export const authMiddleware: RequestHandler = asyncHandler(
         req.headers.authorization.startsWith("Bearer") &&
         req.headers.authorization.split(" ")[1]
     );
-    const refreshToken = req.cookies.refreshToken;
+    const refreshToken:string | undefined = req.cookies.refreshToken;
     if (authorizationToken || refreshToken) {
-      token = authorizationToken || refreshToken;
-      console.log("the token:", token)
+      token = req.headers.authorization?.split(" ")[1] || refreshToken;
       try {
         if (token) {
           const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
